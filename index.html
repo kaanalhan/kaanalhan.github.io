@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rafet Kaan Alhan | Endüstri Mühendisliği</title>
+<meta name="description" content="Rafet Kaan Alhan, Yaşar Üniversitesi Endüstri Mühendisliği 4. sınıf öğrencisi. Eğitim, staj ve proje portföyü.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --ink:#13202C; --muted:#4F5F6E; --line:#CBD5DE; --accent:#1B5CA8; --alert:#C2331B; --panel:#FFFFFF;
+  --head:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0F1A24; --ink:#E6EDF3; --muted:#9FB0BF; --line:#2A3B4B; --accent:#6CA9EC; --alert:#FF7A61; --panel:#16242F;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+main{max-width:46rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+h1,h2,h3{font-family:var(--head);line-height:1.15;margin:0}
+h1{font-size:clamp(2.2rem,7vw,3.4rem);font-weight:700;letter-spacing:-.02em}
+h2{font-size:1.5rem;font-weight:700;margin-bottom:1rem}
+h3{font-size:1.2rem;font-weight:500}
+a{color:var(--accent)}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.lead{font-size:1.2rem;color:var(--muted);margin:.75rem 0 1.5rem;max-width:34rem}
+nav{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;margin:0 0 1.5rem}
+nav a{text-decoration:none;font-weight:600}
+nav a:hover{text-decoration:underline}
+.chart{width:100%;height:auto;display:block;margin:0 0 .25rem}
+.chart .lim{stroke:var(--muted);stroke-width:1;stroke-dasharray:5 5}
+.chart .cl{stroke:var(--line);stroke-width:1.5}
+.chart .ln{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 2.2s ease-out .2s forwards}
+.chart .out{fill:var(--alert)}
+.chart text{fill:var(--muted);font:600 11px var(--body)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.chart .ln{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+section{margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.meta{color:var(--muted);margin:.15rem 0 .75rem}
+.item+.item{margin-top:2rem}
+.proj{background:var(--panel);border-left:4px solid var(--accent);padding:1.25rem 1.25rem 1.1rem;border-radius:0 6px 6px 0}
+.proj+.proj{margin-top:1.5rem}
+.proj p{margin:.5rem 0 0}
+.note{font-size:.98rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;padding:0;margin:.9rem 0 0;list-style:none}
+.tags li{border:1px solid var(--line);border-radius:999px;padding:.1rem .7rem;font-size:.92rem}
+dl{margin:0}
+dt{font-weight:600;margin-top:1rem}
+dd{margin:.15rem 0 0;color:var(--muted)}
+ul.plain{margin:.5rem 0 0;padding-left:1.2rem}
+footer{margin-top:4rem;color:var(--muted);font-size:.95rem}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <svg class="chart" viewBox="0 0 600 150" role="img" aria-label="Dekoratif X-bar kontrol kartı: merkez çizgisi, üst ve alt kontrol limitleri ve limit dışına çıkan tek bir nokta">
+      <line class="lim" x1="40" x2="590" y1="28" y2="28"/>
+      <line class="cl" x1="40" x2="590" y1="78" y2="78"/>
+      <line class="lim" x1="40" x2="590" y1="128" y2="128"/>
+      <text x="0" y="32">UCL</text><text x="6" y="82">CL</text><text x="0" y="132">LCL</text>
+      <polyline class="ln" points="50,82 90,70 130,88 170,74 210,84 250,66 290,80 330,14 370,76 410,90 450,72 490,82 530,68 580,78"/>
+      <circle class="out" cx="330" cy="14" r="5"/>
+    </svg>
+    <h1>Rafet Kaan Alhan</h1>
+    <p class="lead">Endüstri mühendisliği öğrencisi. Kalite, süreç kontrolü ve üretim planlama üzerine çalışıyorum.</p>
+    <nav aria-label="Bölümler">
+      <a href="#egitim">Eğitim</a>
+      <a href="#deneyim">Staj</a>
+      <a href="#projeler">Projeler</a>
+      <a href="#beceriler">Beceriler</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </header>
+
+  <section id="egitim">
+    <h2>Eğitim</h2>
+    <h3>Yaşar Üniversitesi</h3>
+    <p class="meta">Endüstri Mühendisliği, lisans, 2022-2027 (4. sınıf)</p>
+  </section>
+
+  <section id="deneyim">
+    <h2>Staj</h2>
+    <div class="item">
+      <h3>Termokar, Üretim Departmanı</h3>
+      <p class="meta">Manisa, 06.07.2026 - 07.08.2026</p>
+      <p>Termokar, ticari ve endüstriyel iklimlendirme ve soğutma sektörü için ısı eşanjörü, kanatlı borulu serpantin ve hava soğutmalı kondenser üreten bir firma. Stajda üretim akışını, planlama ve kalite kontrol yapısını inceledim; sahada gördüğüm bir sorun için çözüm geliştirdim (aşağıdaki Poka-Yoke projesi).</p>
+      <p>Staj günlüğümde yer alan işlerden:</p>
+      <ul class="plain">
+        <li>Sözleşmeli tedarikçilerden teklif istemek ve sevkiyat listelerini hazırlamak</li>
+        <li>Mevcut kapasiteye göre üretim planı hazırlamak ve yayınlamak</li>
+        <li>Üretim süreci için ürün ağaçları (BOM) hazırlamak</li>
+        <li>MRP sistemini güncellemek, satın alma siparişlerini üretim ihtiyacına göre izlemek</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projeler">
+    <h2>Projeler</h2>
+
+    <article class="proj">
+      <h3>Dijital Poka-Yoke ile süreç adımı takibi</h3>
+      <p class="meta">IE 4830 Staj projesi, 2026</p>
+      <p>Isı eşanjörü üretiminde brazing, solvent temizliği ve azot ile iç purging adımları bazen eksik yapılıyor ya da atlanıyordu. Bu adımların sırasını ve miktarını zorunlu kılan, Python ile yazılmış bir konsol uygulaması geliştirdim.</p>
+      <ul class="plain">
+        <li>Operatör sipariş miktarını ve ürün tipini girer; her adımda girilen miktar sipariş miktarına ulaşmadan adım tamamlanmış sayılmaz.</li>
+        <li>Temizlik, brazing bitmeden; purging, temizlik bitmeden başlatılamaz.</li>
+        <li>Sevkiyat onayı yalnızca tüm adımlar tamamlandığında verilir.</li>
+      </ul>
+      <p class="note">Bu bir prototip. Sahada uygulanıp hurda ve yeniden işleme oranına etkisi ölçülmedi. Barkod/sensör verisi ve ERP bağlantısı sonraki adım olarak düşünüldü.</p>
+      <ul class="tags"><li>Python</li><li>Hata önleme</li><li>Süreç akışı</li><li>Kalite</li></ul>
+    </article>
+
+    <article class="proj">
+      <h3>Tekerlek üretiminde istatistiksel proses kontrolü</h3>
+      <p class="meta">IE 3513 Kalite Güvencesi ve Güvenilirlik, dönem projesi, 2025-2026 Güz</p>
+      <p>Tekerlek kalınlığıyla ilgili müşteri şikâyetlerini konu alan bir vaka çalışması. Hedef kalınlık 250 mm. A makinesinin üretiminden alınan 50 alt grupla X̄-R kontrol kartları çizdim.</p>
+      <ul class="plain">
+        <li>İlk kartlarda kontrol limiti dışı noktalar çıktı. R kartı olağandışı değişkenlik göstermedi; sorun ortalamadaydı. Sorunlu alt gruplar çıkarılıp kartlar yeniden çizilince süreç istatistiksel olarak kararlı hale geldi.</li>
+        <li>A, B ve C makinelerini tek kartta birleştirmenin mantıklı alt gruplama kuralına aykırı olduğunu ve gerçek sorunları gizlediğini gösterdim.</li>
+        <li>Makineleri ayrı analiz edince B ve C'nin ortalamasının hedeften kaydığı görüldü.</li>
+        <li>İki iyileştirme seçeneğini karşılaştırdım: varyansı azaltmak ve ortalamayı hedefe merkezlemek. Cpk'yı daha çok artırdığı için ortalamayı merkezlemeyi seçtim.</li>
+      </ul>
+      <ul class="tags"><li>X̄-R kartları</li><li>Cpk</li><li>Süreç yeterliliği</li><li>Excel</li></ul>
+    </article>
+    <!-- Görsel eklemek için: images klasörüne dosyayı yükleyip şu satırı kullan:
+         <img src="images/dosya.png" alt="Açıklama" style="max-width:100%;height:auto">
+         Video için YouTube'a yükleyip paylaş > Göm (embed) kodunu buraya yapıştır. -->
+  </section>
+
+  <section id="beceriler">
+    <h2>Beceriler</h2>
+    <dl>
+      <dt>Kalite ve süreç</dt>
+      <dd>İstatistiksel proses kontrolü, süreç yeterlilik analizi (Cpk), hata önleme (poka-yoke)</dd>
+      <dt>Üretim planlama</dt>
+      <dd>MRP, ürün ağacı (BOM), kapasiteye göre üretim planı</dd>
+      <dt>Araçlar</dt>
+      <dd>Excel, Python</dd>
+    </dl>
+  </section>
+
+  <section id="iletisim">
+    <h2>İletişim</h2>
+    <p><a href="mailto:rafetkaanalhan@gmail.com">rafetkaanalhan@gmail.com</a></p>
+    <p><a href="https://www.linkedin.com/in/rafet-kaan-alhan-a48293212/" rel="noopener" target="_blank">LinkedIn profilim</a></p>
+  </section>
+
+  <footer>© 2026 Rafet Kaan Alhan</footer>
+</main>
+</body>
+</html>
