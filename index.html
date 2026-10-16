@@ -78,6 +78,7 @@ footer{margin-top:4rem;color:var(--muted);font-size:.95rem}
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
+      <a href="convertlab/">ConvertLab</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -133,6 +134,18 @@ footer{margin-top:4rem;color:var(--muted);font-size:.95rem}
     <h2>Projects</h2>
 
     <article class="proj">
+      <h3><a href="convertlab/">ConvertLab: unit converter and shop-floor calculators</a></h3>
+      <p class="meta">Web project, 2026</p>
+      <p>A single-page tool that runs in the browser: seven unit categories (including power in refrigeration tons and airflow in CFM, as found on condenser datasheets) and four calculators for FX swap, OEE, process capability and takt time.</p>
+      <ul class="plain">
+        <li>The Cpk calculator draws the process distribution against the spec limits and compares re-centering the mean with reducing variation, as in my SPC case study.</li>
+        <li>Every input is checked before calculating, like a poka-yoke: for example, defects cannot exceed the units produced.</li>
+        <li>Each tool has its own link, such as <a href="convertlab/#cpk">convertlab/#cpk</a>.</li>
+      </ul>
+      <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>OEE</li><li>Cpk</li></ul>
+    </article>
+
+    <article class="proj">
       <h3>Digital poka-yoke for process step tracking</h3>
       <p class="meta">Internship project, Termokar, 2026</p>
       <p>In heat exchanger production, brazing, solvent cleaning and nitrogen purging were sometimes skipped or incomplete. I wrote a Python console application that enforces the correct sequence and quantities.</p>
@@ -155,6 +168,7 @@ footer{margin-top:4rem;color:var(--muted);font-size:.95rem}
         <li>Analyzed separately, the means of B and C were off target.</li>
         <li>Compared two improvement options, reducing variation and re-centering the mean, and chose re-centering because it raised Cpk more.</li>
       </ul>
+      <p class="note">Try the same comparison in the <a href="convertlab/#cpk">ConvertLab Cpk calculator</a>.</p>
       <ul class="tags"><li>X̄-R charts</li><li>Cpk</li><li>Process capability</li><li>Excel</li></ul>
     </article>
     <!-- To add an image: upload it to an "images" folder in the repo, then add:

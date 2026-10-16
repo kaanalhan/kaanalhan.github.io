@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ConvertLab | Unit conversions and shop-floor calculators</title>
+<meta name="description" content="ConvertLab by Rafet Kaan Alhan: unit conversions plus FX swap, OEE, process capability (Cpk) and takt time calculators for industrial engineers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Set the theme before the page paints, so dark mode does not flash white.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('convertlab-theme'); } catch (e) {}
+    if (t !== 'dark' && t !== 'light') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="#top">ConvertLab</a>
+  <nav aria-label="Main">
+    <a href="#tools">Tools</a>
+    <a href="#pricing">Pricing</a>
+    <a href="../">Portfolio</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode"></button>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <svg class="gauge" viewBox="0 0 600 120" role="img" aria-label="Decorative normal curve between a lower and an upper specification limit">
+    <line class="spec" x1="120" x2="120" y1="8" y2="112"/>
+    <line class="spec" x1="480" x2="480" y1="8" y2="112"/>
+    <text x="96" y="20">LSL</text><text x="488" y="20">USL</text>
+    <path class="curve" d="M20,110 C150,110 200,14 300,14 C400,14 450,110 580,110"/>
+  </svg>
+  <h1>Every number on the shop floor, converted and checked.</h1>
+  <p class="lead">Eleven tools on one page: length, mass, pressure, energy, temperature, power and flow, plus FX swap, OEE, process capability and takt time. Everything runs in your browser.</p>
+</section>
+
+<section id="tools" class="tools">
+  <div class="tabs" id="tabs" role="tablist" aria-label="Tools"></div>
+
+  <!-- Unit converter -->
+  <div id="panel-convert" class="panel" role="tabpanel">
+    <div class="row">
+      <div class="field">
+        <label for="from-value">From</label>
+        <input id="from-value" type="number" inputmode="decimal" value="1" step="any">
+        <select id="from-unit" aria-label="From unit"></select>
+      </div>
+      <button id="swap" class="swap" type="button" aria-label="Swap units">&#8644;</button>
+      <div class="field">
+        <label for="to-value">To</label>
+        <input id="to-value" type="text" readonly>
+        <select id="to-unit" aria-label="To unit"></select>
+      </div>
+    </div>
+    <div class="result-line">
+      <p id="formula" class="formula" aria-live="polite"></p>
+      <button id="copy" class="ghost" type="button">Copy result</button>
+    </div>
+    <p id="hint" class="hint"></p>
+  </div>
+
+  <!-- FX forward -->
+  <div id="panel-fx" class="panel" role="tabpanel" hidden>
+    <p class="intro">What should a USD/TRY forward cost? Covered interest parity: F = S &times; (1 + r<sub>TRY</sub> &times; d/365) / (1 + r<sub>USD</sub> &times; d/360). The inputs are illustrative, not market data, and the result is a theoretical price, not a dealing quote.</p>
+    <div class="grid">
+      <div class="field"><label for="fx-spot">Spot rate S (TRY per USD)</label><input id="fx-spot" type="number" inputmode="decimal" value="42" min="0" step="any"><small class="err" id="fx-spot-err"></small></div>
+      <div class="field"><label for="fx-days">Days to delivery d</label><input id="fx-days" type="number" inputmode="decimal" value="90" min="0" step="any"><small class="err" id="fx-days-err"></small></div>
+      <div class="field"><label for="fx-try">TRY rate (% per year, Act/365)</label><input id="fx-try" type="number" inputmode="decimal" value="39" step="any"><small class="err" id="fx-try-err"></small></div>
+      <div class="field"><label for="fx-usd">USD rate (% per year, Act/360)</label><input id="fx-usd" type="number" inputmode="decimal" value="4.25" step="any"><small class="err" id="fx-usd-err"></small></div>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><span>Swap points (F &minus; S)</span><b id="fx-pts">-</b></div>
+      <div class="stat"><span>Annualized premium</span><b id="fx-ann">-</b></div>
+      <div class="stat main"><span>Forward rate F</span><b id="fx-f">-</b></div>
+    </div>
+    <p id="fx-text" class="formula"></p>
+  </div>
+
+  <!-- OEE -->
+  <div id="panel-oee" class="panel" role="tabpanel" hidden>
+    <p class="intro">How much of the planned time made good parts at full speed? OEE = Availability &times; Performance &times; Quality. Each input is checked before anything is calculated, the same way a poka-yoke blocks a step that is out of order.</p>
+    <div class="grid">
+      <div class="field"><label for="oee-planned">Planned production time (min)</label><input id="oee-planned" type="number" inputmode="decimal" value="480" min="0" step="any"><small class="err" id="oee-planned-err"></small></div>
+      <div class="field"><label for="oee-down">Downtime and stops (min)</label><input id="oee-down" type="number" inputmode="decimal" value="55" min="0" step="any"><small class="err" id="oee-down-err"></small></div>
+      <div class="field"><label for="oee-ct">Ideal cycle time (sec per unit)</label><input id="oee-ct" type="number" inputmode="decimal" value="30" min="0" step="any"><small class="err" id="oee-ct-err"></small></div>
+      <div class="field"><label for="oee-units">Total units produced</label><input id="oee-units" type="number" inputmode="decimal" value="720" min="0" step="any"><small class="err" id="oee-units-err"></small></div>
+      <div class="field"><label for="oee-defects">Defective units</label><input id="oee-defects" type="number" inputmode="decimal" value="18" min="0" step="any"><small class="err" id="oee-defects-err"></small></div>
+    </div>
+    <div class="stats four" aria-live="polite">
+      <div class="stat"><span>Availability</span><b id="oee-a">-</b></div>
+      <div class="stat"><span>Performance</span><b id="oee-p">-</b></div>
+      <div class="stat"><span>Quality</span><b id="oee-q">-</b></div>
+      <div class="stat main"><span>OEE</span><b id="oee-o">-</b></div>
+    </div>
+    <div class="losses" id="oee-losses" aria-hidden="true">
+      <div class="lossbar"><i class="seg good" id="seg-good"></i><i class="seg q" id="seg-q"></i><i class="seg p" id="seg-p"></i><i class="seg a" id="seg-a"></i></div>
+      <ul class="legend">
+        <li><i class="good"></i>Good parts at full speed</li>
+        <li><i class="q"></i>Quality loss</li>
+        <li><i class="p"></i>Speed loss</li>
+        <li><i class="a"></i>Downtime</li>
+      </ul>
+    </div>
+    <p id="oee-text" class="formula"></p>
+  </div>
+
+  <!-- Process capability -->
+  <div id="panel-cpk" class="panel" role="tabpanel" hidden>
+    <p class="intro">Is the process able to stay inside the specification? Cp compares the spec width with the spread (6&sigma;); Cpk also counts how far the mean sits from the center. The defaults come from my wheel-thickness case study, with a 250 mm target.</p>
+    <div class="grid">
+      <div class="field"><label for="cpk-lsl">Lower spec limit (LSL)</label><input id="cpk-lsl" type="number" inputmode="decimal" value="248" step="any"><small class="err" id="cpk-lsl-err"></small></div>
+      <div class="field"><label for="cpk-usl">Upper spec limit (USL)</label><input id="cpk-usl" type="number" inputmode="decimal" value="252" step="any"><small class="err" id="cpk-usl-err"></small></div>
+      <div class="field"><label for="cpk-mean">Process mean (&mu;)</label><input id="cpk-mean" type="number" inputmode="decimal" value="250.6" step="any"><small class="err" id="cpk-mean-err"></small></div>
+      <div class="field"><label for="cpk-sd">Standard deviation (&sigma;)</label><input id="cpk-sd" type="number" inputmode="decimal" value="0.5" min="0" step="any"><small class="err" id="cpk-sd-err"></small></div>
+    </div>
+    <svg id="cpk-chart" class="dist" viewBox="0 0 600 190" role="img" aria-label="Normal distribution of the process against the specification limits"></svg>
+    <div class="stats four" aria-live="polite">
+      <div class="stat"><span>Cp</span><b id="cpk-cp">-</b></div>
+      <div class="stat main"><span>Cpk</span><b id="cpk-cpk">-</b></div>
+      <div class="stat"><span>Expected out of spec</span><b id="cpk-ppm">-</b></div>
+      <div class="stat"><span>Verdict</span><b id="cpk-verdict">-</b></div>
+    </div>
+    <p id="cpk-text" class="formula"></p>
+  </div>
+
+  <!-- Takt time -->
+  <div id="panel-takt" class="panel" role="tabpanel" hidden>
+    <p class="intro">How fast must the line run to meet demand? Takt time = available time / customer demand. The minimum number of stations = total work content / takt time, rounded up.</p>
+    <div class="grid">
+      <div class="field"><label for="tk-shift">Shift length (min)</label><input id="tk-shift" type="number" inputmode="decimal" value="480" min="0" step="any"><small class="err" id="tk-shift-err"></small></div>
+      <div class="field"><label for="tk-breaks">Breaks per shift (min)</label><input id="tk-breaks" type="number" inputmode="decimal" value="45" min="0" step="any"><small class="err" id="tk-breaks-err"></small></div>
+      <div class="field"><label for="tk-shifts">Shifts per day</label><input id="tk-shifts" type="number" inputmode="decimal" value="2" min="0" step="1"><small class="err" id="tk-shifts-err"></small></div>
+      <div class="field"><label for="tk-demand">Customer demand (units per day)</label><input id="tk-demand" type="number" inputmode="decimal" value="120" min="0" step="any"><small class="err" id="tk-demand-err"></small></div>
+      <div class="field"><label for="tk-work">Total work content (min per unit)</label><input id="tk-work" type="number" inputmode="decimal" value="34" min="0" step="any"><small class="err" id="tk-work-err"></small></div>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><span>Available time per day</span><b id="tk-avail">-</b></div>
+      <div class="stat main"><span>Takt time</span><b id="tk-takt">-</b></div>
+      <div class="stat"><span>Minimum stations</span><b id="tk-st">-</b></div>
+    </div>
+    <p id="tk-text" class="formula"></p>
+  </div>
+</section>
+
+<section id="pricing" class="pricing">
+  <h2>Pricing</h2>
+  <p class="note">Demo pricing for a workshop project. There is nothing to buy.</p>
+  <div class="plans">
+    <article class="plan">
+      <h3>Operator</h3>
+      <p class="price">$0</p>
+      <ul><li>All eleven tools</li><li>Copy any result</li><li>Free forever</li></ul>
+    </article>
+    <article class="plan featured">
+      <h3>Shift lead</h3>
+      <p class="price">$4<span>/mo</span></p>
+      <ul><li>Saved shift reports</li><li>SPC charts from CSV</li><li>Team sharing</li></ul>
+    </article>
+    <article class="plan">
+      <h3>Plant</h3>
+      <p class="price">Ask us</p>
+      <ul><li>Barcode and sensor input</li><li>ERP integration</li><li>On-site training</li></ul>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 ConvertLab, built by <a href="../">Rafet Kaan Alhan</a></p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
